@@ -16,15 +16,26 @@
         $msg = '';
 
         if(isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
-
-          if($_POST['username'] == 'username' &&
-            $_POST['password'] == 'password') {
-              $_SESSION['valid'] = true;
-              $_SESSION['timeout'] = time();
-              $_SESSION['username'] = 'username';
-
-              echo 'correct login info';
-            }
+			
+			$userName = $_POST['username'];
+			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+			$query = "SELECT PASSWORD FROM PROFILE WHERE USERNAME = '$userName'";
+			$stid = oci_parse($conn,$query);
+			oci_execute($stid,OCI_DEFAULT);
+			while ($row = oci_fetch_array($stid,OCI_ASSOC))
+			{
+				$correctPassword = $row;
+			}
+			oci_free_statement($stid);
+			oci_close($conn);
+			
+			if (!empty($correctPassword) && $_POST['password'] == $correctPassword) {
+				
+				$_SESSION['valid'] = true;
+				$_SESSION['timeout'] = time();
+				$_SESSION['username'] = $userName;
+				header('Location: home.php');
+			}
             else {
               $msg = 'Incorrect login credentials';
             }
