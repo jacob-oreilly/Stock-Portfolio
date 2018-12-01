@@ -123,10 +123,10 @@
 			}
 		?>
 		
-		<form class = "form-login" role = "form" action= "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method = "post">
-			<h4><?php echo $msg; ?></h4>
-			<input type = "text" class = "form-control" name = "portfolioID" placeholder = "Portfolio ID" required autofocus></br>
-            <button class = "btn btn-lg btn-primary btn-block" type = "submit" name = "submit">Submit</button>
+		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+			Portfolio ID: <input type="text" name="portfolioID">
+			<br><br>
+			<input type="submit" name="submit" value="Submit">
 		</form>
 	</body>
 </html>
