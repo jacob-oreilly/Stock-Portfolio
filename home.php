@@ -21,7 +21,7 @@
 				$counter = 0;
 				foreach ($row as $item)
 				{
-					switch ($x)
+					switch ($counter)
 					{
 						case 0:
 							echo "First name: " . $item;
@@ -50,20 +50,23 @@
 		
 		<?php
 			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
-			$query = "SELECT ID FROM USERPROFILE WHERE USERNAME = '$_SESSION['username']'";
+			$query = "SELECT ID FROM USERPROFILE WHERE USERNAME = '$userName'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
 
 			while ($row = oci_fetch_array($stid,OCI_ASSOC))
 			{
-				$_SESSION['userID'] = $row;
+				foreach ($row as $item)
+				{
+					$_SESSION['userID'] = $item;
+				}
 			}
 			oci_free_statement($stid);
 			oci_close($conn);
 			
 			
 			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
-			$query = "SELECT ID, NOTE, NET_CHANGE, EQUITY FROM PORTFOLIO WHERE PROFILE_ID = '$_SESSION['userID']'";
+			$query = "SELECT ID, NOTE, NET_CHANGE, EQUITY FROM PORTFOLIO WHERE PROFILE_ID = '$userName'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
 
@@ -111,7 +114,10 @@
 
 				while ($row = oci_fetch_array($stid,OCI_ASSOC))
 				{
-					$portfolioID = $row;
+					foreach ($row as $item)
+					{
+						$portfolioID = $item;
+					}
 				}
 				oci_free_statement($stid);
 				oci_close($conn);
