@@ -18,7 +18,7 @@
         if(isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
 			
 			$userName = $_POST['username'];
-			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+			$conn = oci_connect('joreilly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 			$query = "SELECT PASSWORD FROM USERPROFILE WHERE USERNAME = '$userName'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
@@ -58,7 +58,6 @@
             <button class = "btn btn-lg btn-primary btn-block" type = "submit"
                name = "login">Login</button>
       </form>
-      Logout <a href = "logout.php" title = "Logout">
     </div>
   </body>
 </html>

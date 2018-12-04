@@ -1,9 +1,14 @@
+<html>
+<body>
 <?php
+  ob_start();
   session_start();
+  
   unset($_SESSION["username"]);
-  unest($_SESSION["password"]);
+  unset($_SESSION["password"]);
 
-  echo 'successfully logged out';
-  header('REfresh: 2; URL = Login.php');
+  header('Location: Login.php');
 
 ?>
+</body>
+</html>

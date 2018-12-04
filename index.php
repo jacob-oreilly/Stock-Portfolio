@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<a href="Login.php">Login</a>
+	
 </head>
   <body>
+   <?php header('Refresh: 0; URL = Login.php'); ?>
     <h2>Stock-Portfolio</h2>
   </body>
 </html>
