@@ -129,7 +129,7 @@
 				}
 				else
 				{
-				  $msg = 'Invalid Portfolio ID';
+				  echo'Invalid Portfolio ID';
 				}
 			}
 		?>

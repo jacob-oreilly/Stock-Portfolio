@@ -13,7 +13,7 @@
 	
 		
 		<?php
-			$portfolioID = $_POST['portfolioID'];
+			$portfolioID = $_SESSION['portfolioID'];
 			$conn = oci_connect('joreilly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 			$query = "SELECT TICKER, BID, ASK, EQUITY FROM STOCKS WHERE PORTFOLIO_ID = '$portfolioID'";
 			$stid = oci_parse($conn,$query);
