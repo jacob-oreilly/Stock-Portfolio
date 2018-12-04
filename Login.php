@@ -19,18 +19,21 @@
 			
 			$userName = $_POST['username'];
 			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
-			$query = "SELECT PASSWORD FROM PROFILE WHERE USERNAME = '$userName'";
+			$query = "SELECT PASSWORD FROM USERPROFILE WHERE USERNAME = '$userName'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
 			while ($row = oci_fetch_array($stid,OCI_ASSOC))
 			{
-				$correctPassword = $row;
+				foreach ($row as $item)
+				{
+					$correctPassword = $item;
+				}
 			}
 			oci_free_statement($stid);
 			oci_close($conn);
 			
-			if (!empty($correctPassword) && $_POST['password'] == $correctPassword) {
-				
+			if (strcmp($_POST['password'],$correctPassword) == 0) 
+			{
 				$_SESSION['valid'] = true;
 				$_SESSION['timeout'] = time();
 				$_SESSION['username'] = $userName;

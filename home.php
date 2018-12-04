@@ -1,13 +1,18 @@
 <?php
+	ob_start();
 	session_start();
 ?>
-<html>
+
+<html lang = "en">
 	<body>
-		<h2>Home</h2>
+		<head>
+			<title>Home</title>
+			<link href = "css/bootstrap.min.css" rel = "stylesheet">
+		</head>
 		<?php
 			$userName = $_SESSION['username'];
 			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
-			$query = "SELECT FIRST_NAME, LAST_NAME, NET_EQUITY, NUM_PORTFOLIOS FROM PROFILE WHERE USERNAME = '$userName'";
+			$query = "SELECT FIRST_NAME, LAST_NAME, NET_EQUITY, NUM_PORTFOLIOS FROM USERPROFILE WHERE USERNAME = '$userName'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
 
@@ -45,7 +50,7 @@
 		
 		<?php
 			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
-			$query = "SELECT ID FROM PROFILE WHERE USERNAME = '$_SESSION['username']'";
+			$query = "SELECT ID FROM USERPROFILE WHERE USERNAME = '$_SESSION['username']'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
 
