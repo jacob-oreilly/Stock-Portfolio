@@ -58,15 +58,14 @@
 			{
 				foreach ($row as $item)
 				{
-					$_SESSION['userID'] = $item;
+					$userID = $item;
 				}
 			}
 			oci_free_statement($stid);
 			oci_close($conn);
 			
-			
 			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
-			$query = "SELECT ID, NOTE, NET_CHANGE, EQUITY FROM PORTFOLIO WHERE PROFILE_ID = '$userName'";
+			$query = "SELECT ID, NOTE, NET_CHANGE, EQUITY FROM PORTFOLIO WHERE PROFILE_ID = '$userID'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
 
@@ -125,7 +124,7 @@
 				if (!empty($portfolioID))
 				{
 					$_SESSION['portfolioID'] = $portfolioID;
-					header('Location: portfolio.php');
+					header('Location: Stocks.php');
 				}
 				else
 				{
