@@ -3,27 +3,17 @@
 	session_start();
 ?>
 <?php include 'nav.php';?>
-<html>
-<head>
+<html lang = "en">
+	<body>
+		<head>
+			<title>Home</title>
+			<link href = "css/bootstrap.min.css" rel = "stylesheet">
+			
+		</head>
 	
-	<style>
-		body {
-			margin: 0;
-		}
-
-		.container {
-			min-height: 100%;
-			display: flex;
-			flex-direction: column;
-		}
-
-		
-	</style>
-</head>
-<body>
-	<div class="container">
 		
 		<?php
+			$portfolioID = $_POST['portfolioID'];
 			$conn = oci_connect('joreilly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 			$query = "SELECT TICKER, BID, ASK, EQUITY FROM STOCKS WHERE PORTFOLIO_ID = '$portfolioID'";
 			$stid = oci_parse($conn,$query);
@@ -61,6 +51,6 @@
 			echo '<br/><br/><br/>';
 		?>
 		<a id="back" href="home.php">Back</a>
-	</div>
+	
 </body>
 </html>
