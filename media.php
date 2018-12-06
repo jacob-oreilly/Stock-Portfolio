@@ -26,16 +26,18 @@
 					switch ($counter)
 					{
 						case 0:
+							echo "<strong>";
 							echo $item;
-							echo '<br/>';
+							echo "</strong>";
+							echo '<br/><br/>';
 							break;
 						case 1:
 							echo $item;
-							echo '<br/>';
+							echo '<br/><br/>';
 							break;
 						case 2:
 							echo $item;
-							echo '<br/>';
+							echo '<br/><br/><br/>';
 							break;
 					}
 					$counter++;
