@@ -6,13 +6,13 @@
 <html lang = "en">
 	<body>
 		<head>
-			<title>Home</title>
+			<title>Portfolios</title>
 			<link href = "css/bootstrap.min.css" rel = "stylesheet">
 			
 		</head>
 		<?php
 			$userName = $_SESSION['username'];
-			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+			$conn = oci_connect('jorielly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 			$query = "SELECT FIRST_NAME, LAST_NAME, NET_EQUITY, NUM_PORTFOLIOS FROM USERPROFILE WHERE USERNAME = '$userName'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
@@ -50,7 +50,7 @@
 		?>
 		
 		<?php
-			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+			$conn = oci_connect('jorielly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 			$query = "SELECT ID FROM USERPROFILE WHERE USERNAME = '$userName'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
@@ -65,7 +65,7 @@
 			oci_free_statement($stid);
 			oci_close($conn);
 			
-			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+			$conn = oci_connect('jorielly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 			$query = "SELECT ID, NOTE, NET_CHANGE, EQUITY FROM PORTFOLIO WHERE PROFILE_ID = '$userID'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
@@ -106,7 +106,7 @@
 			{
 				$portfolioIDInput = $_POST['portfolioID'];
 				
-				$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+				$conn = oci_connect('jorielly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 				$query = "SELECT ID FROM PORTFOLIO WHERE ID = '$portfolioIDInput'";
 				$stid = oci_parse($conn,$query);
 				oci_execute($stid,OCI_DEFAULT);
@@ -121,7 +121,7 @@
 				oci_free_statement($stid);
 				oci_close($conn);
 				
-				$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+				$conn = oci_connect('jorielly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 				$query = "SELECT PROFILE_ID FROM PORTFOLIO WHERE ID = '$portfolioIDInput'";
 				$stid = oci_parse($conn,$query);
 				oci_execute($stid,OCI_DEFAULT);
@@ -138,7 +138,7 @@
 				
 				$userName = $_SESSION['userName'];
 				
-				$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+				$conn = oci_connect('jorielly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 				$query = "SELECT ID FROM USERPROFILE WHERE USERNAME = '$userName'";
 				$stid = oci_parse($conn,$query);
 				oci_execute($stid,OCI_DEFAULT);
