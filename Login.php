@@ -18,15 +18,24 @@
         if(isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
 			
 			$userName = $_POST['username'];
-			$conn = oci_connect('jorielly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
-			$query = "SELECT PASSWORD FROM USERPROFILE WHERE USERNAME = '$userName'";
+			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+			$query = "SELECT PASSWORD, USERNAME_ID FROM LOGININFO WHERE USERNAME = '$userName'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
 			while ($row = oci_fetch_array($stid,OCI_ASSOC))
 			{
+				$counter = 0;
 				foreach ($row as $item)
 				{
-					$correctPassword = $item;
+					if ($counter == 0)
+					{
+						$correctPassword = $item;
+					}
+					else
+					{
+						$userProfileID = $item;
+					}
+					$counter++;
 				}
 			}
 			oci_free_statement($stid);
@@ -36,7 +45,7 @@
 			{
 				$_SESSION['valid'] = true;
 				$_SESSION['timeout'] = time();
-				$_SESSION['username'] = $userName;
+				$_SESSION['userProfileID'] = $userProfileID;
 				header('Location: home.php');
 			}
             else {
