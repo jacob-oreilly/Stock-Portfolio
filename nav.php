@@ -35,6 +35,7 @@
 	<div class="nav">
 		<a class="#logout" href="Logout.php">Logout</a>
 		<a class="#home" href="home.php">Portfolios</a>
+		<a class="#media" href="media.php">Media</a>
 	</div>
 </body>
 </html>
