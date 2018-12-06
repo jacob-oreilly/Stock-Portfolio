@@ -10,6 +10,8 @@
 			<link href = "css/bootstrap.min.css" rel = "stylesheet">
 			
 		</head>
+		<strong><u>Profile Info</u></strong>
+		<br/>
 		<?php
 			$userProfileID = $_SESSION['userProfileID'];
 			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
@@ -48,7 +50,9 @@
 			oci_close($conn);
 			echo '<br/><br/><br/>';
 		?>
-		
+		<br/><br/>
+		<Strong><u>List of Portfolios</u></strong>
+		<br/>
 		<?php
 			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 			$query = "SELECT ID, NOTE, NET_CHANGE, EQUITY FROM PORTFOLIO WHERE PROFILE_ID = '$userProfileID'";
@@ -85,7 +89,9 @@
 			oci_free_statement($stid);
 			oci_close($conn);
 		?>
-		
+		<br/><br/>
+		<strong><u>View Portfolio by ID</u></strong>
+		<br/>
 		<?php
 			if(isset($_POST['submit']) && !empty($_POST['portfolioID']))
 			{
