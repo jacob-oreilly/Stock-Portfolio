@@ -16,7 +16,7 @@
 		</br>
 		<?php
 			$portfolioID = $_SESSION['portfolioID'];
-			$conn = oci_connect('joreilly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 			$query = "SELECT TICKER, BID, ASK FROM STOCKS WHERE PORTFOLIO_ID = '$portfolioID'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
@@ -43,6 +43,7 @@
 					}
 					$counter++;
 				}
+				echo '<br/>';
 			}
 			oci_free_statement($stid);
 			oci_close($conn);
@@ -53,7 +54,8 @@
 		</br>
 		<?php
 			$portfolioID = $_SESSION['portfolioID'];
-			$conn = oci_connect('joreilly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+      $conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+
 			$query = "SELECT EQUITY_GROWTH, STOCKSOWNED, PERCENT_CHANGE FROM USERSTOCKS WHERE USERSTOCK_ID = '$portfolioID'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);

@@ -14,7 +14,7 @@
 		<br/>
 		<?php
 			$userProfileID = $_SESSION['userProfileID'];
-			$conn = oci_connect('joreilly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 			$query = "SELECT FIRST_NAME, LAST_NAME, NET_EQUITY, NUM_PORTFOLIOS FROM USERPROFILE WHERE ID = '$userProfileID'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
@@ -54,7 +54,7 @@
 		<Strong><u>List of Portfolios</u></strong>
 		<br/>
 		<?php
-			$conn = oci_connect('joreilly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+			$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 			$query = "SELECT ID, NOTE, NET_CHANGE, EQUITY FROM PORTFOLIO WHERE PROFILE_ID = '$userProfileID'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
@@ -97,7 +97,7 @@
 			{
 				$portfolioIDInput = $_POST['portfolioID'];
 				
-				$conn = oci_connect('joreilly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+				$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 				$query = "SELECT ID FROM PORTFOLIO WHERE ID = '$portfolioIDInput'";
 				$stid = oci_parse($conn,$query);
 				oci_execute($stid,OCI_DEFAULT);
@@ -112,7 +112,7 @@
 				oci_free_statement($stid);
 				oci_close($conn);
 				
-				$conn = oci_connect('joreilly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+				$conn = oci_connect('spatten', 'Nov961997', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 				$query = "SELECT PROFILE_ID FROM PORTFOLIO WHERE ID = '$portfolioIDInput'";
 				$stid = oci_parse($conn,$query);
 				oci_execute($stid,OCI_DEFAULT);
@@ -134,7 +134,11 @@
 				}
 				else
 				{
-				  echo'Invalid Portfolio ID';
+					echo '<br/>';
+					echo '<br/>';
+					echo'Invalid Portfolio ID';
+					echo '<br/>';
+					echo '<br/>';
 				}
 			}
 		?>
