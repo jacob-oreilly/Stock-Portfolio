@@ -12,7 +12,8 @@
 	<body>
 		
 	
-		<h2>List of stocks</h2>
+		<strong><u>List of stocks</u></strong>
+		</br>
 		<?php
 			$portfolioID = $_SESSION['portfolioID'];
 			$conn = oci_connect('joreilly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
@@ -47,11 +48,13 @@
 			oci_close($conn);
 			echo '<br/><br/><br/>';
 		?>
-		<h2>Your stock progress</h2>
+		</br>
+		<strong><u>Your stock progress</u></strong>
+		</br>
 		<?php
 			$portfolioID = $_SESSION['portfolioID'];
 			$conn = oci_connect('joreilly', 'Feb231996', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
-			$query = "SELECT EQUITY_GROWTH, STOCKSOWNED, PRECENT_CHANGE FROM USERSTOCKS WHERE USERSTOCK_ID = '$portfolioID'";
+			$query = "SELECT EQUITY_GROWTH, STOCKSOWNED, PERCENT_CHANGE FROM USERSTOCKS WHERE USERSTOCK_ID = '$portfolioID'";
 			$stid = oci_parse($conn,$query);
 			oci_execute($stid,OCI_DEFAULT);
 
